@@ -29,9 +29,6 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
-# Download the GPG key and add it to the keyring directly
-RUN curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud-google-keyring.gpg
-
 
 COPY GOOGLE_TTS_API.json /app/service-account-file.json
 ENV GOOGLE_APPLICATION_CREDENTIALS=/app/service-account-file.json
