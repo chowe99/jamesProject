@@ -32,10 +32,8 @@ RUN apt-get update && apt-get install -y \
 # Download the GPG key and add it to the keyring directly
 RUN curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud-google-keyring.gpg
 
-# Add Google Cloud repository
-RUN echo "deb [signed-by=/usr/share/keyrings/cloud-google-keyring.gpg] http://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 
-COPY uhhhpls-f45317231e9a.json /app/service-account-file.json
+COPY GOOGLE_TTS_API.json /app/service-account-file.json
 ENV GOOGLE_APPLICATION_CREDENTIALS=/app/service-account-file.json
 
 WORKDIR /app
