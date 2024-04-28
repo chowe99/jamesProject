@@ -52,19 +52,6 @@ def check_results():
         'video_path': video_path
     })
 
-@main_blueprint.route('/slideshow/<prompt>')
-def view_slideshow(prompt):
-    return render_template('slideshow.html')
-
-@main_blueprint.route('/generate', methods=['POST'])
-def generate():
-    # Assume image_urls and audio_paths are passed as JSON or form data
-    from .celery_worker import create_slideshow_with_audio
-    data = request.get_json()
-    image_urls = data.get('image_urls')
-    audio_paths = data.get('audio_paths')
-    create_slideshow_with_audio(image_urls, audio_paths)
-    return jsonify({"message": "Task submitted"})
 
 from flask import send_from_directory
 
